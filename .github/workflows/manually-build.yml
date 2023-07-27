@@ -1,0 +1,81 @@
+name: manually build package using xcpkg
+
+on:
+  workflow_dispatch:
+    inputs:
+
+      package-name:
+        description: input the package name to be built
+        required: true
+
+      target-platform:
+        description: input a target platform to be built for
+        type: choice
+        options:
+          - MacOSX
+          - AppleTVOS
+          - AppleTVSimulator
+          - WatchOS
+          - WatchSimulator
+          - iPhoneOS
+          - iPhoneSimulator
+
+      target-version:
+        description: input a min target platform version to be supported
+        required: true
+
+      target-arch:
+        description: choose a target arch to be built for
+        type: choice
+        options:
+          - x86_64
+          - arm64
+          - arm64e
+          - arm64_32
+          - armv7k
+
+      build-type:
+        description: choose a build type
+        type: choice
+        options:
+          - release
+          - debug
+        required: true
+        default: release
+
+      link-type:
+        description: choose a link type
+        type: choice
+        options:
+          - static-prefered
+          - shared-prefered
+          - shared-only
+        required: true
+        default: static-only
+
+      log-level:
+        description: choose a log-level
+        type: choice
+        options:
+          - ''
+          - '-q'
+          - '-v'
+          - '-vv'
+
+jobs:
+  build:
+
+    runs-on: macos-13
+
+    steps:
+      - run: curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/xcpkg
+      - run: chmod a+x xcpkg
+      - run: ./xcpkg setup
+      - run: ./xcpkg update
+      - run: ./xcpkg install ${{ github.event.inputs.target-platform }}/${{ github.event.inputs.target-version }}/${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} --link-type=${{ github.event.inputs.link-type }} ${{ github.event.inputs.log-level }}
+      - run: ./xcpkg pack    ${{ github.event.inputs.target-platform }}/${{ github.event.inputs.target-version }}/${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} -o .
+
+      - uses: actions/upload-artifact@v3
+        with:
+          name: ${{ github.event.inputs.package-name }}-${{ github.event.inputs.target-platform }}${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}.tar.xz
+          path: ${{ github.event.inputs.package-name }}-*.tar.xz
