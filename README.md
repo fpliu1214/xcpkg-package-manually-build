@@ -8,7 +8,7 @@ In this way, all you need to do is just clicking the buttons and waiting for fin
 
 ||
 |-|
-|<img src="1.png" width="311px" >|
+|<img src="1.png" width="309px" >|
 
 ## how to use this project
 

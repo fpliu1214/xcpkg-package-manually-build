@@ -49,7 +49,7 @@ on:
           - static-prefered
           - shared-prefered
           - shared-only
-        default: static-only
+        default: static-prefered
 
       log-level:
         description: choose a log-level
