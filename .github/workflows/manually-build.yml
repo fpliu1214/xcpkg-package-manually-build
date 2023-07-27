@@ -40,7 +40,6 @@ on:
         options:
           - release
           - debug
-        default: release
 
       link-type:
         description: choose a link type
@@ -49,7 +48,6 @@ on:
           - static-prefered
           - shared-prefered
           - shared-only
-        default: static-prefered
 
       log-level:
         description: choose a log-level
