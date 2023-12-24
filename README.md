@@ -2,7 +2,7 @@
 
 manually build packages using ([xcpkg](https://github.com/leleliu008/xcpkg)) via GitHub Actions.
 
-In this way, you will be liberated from the rut of setting up the build environemt.
+In this way, you will be liberated from the rut of setting up the build environmemt.
 
 In this way, all you need to do is just clicking the buttons and waiting for finishing. After finishing, a url refers to a zip archive will be provided to download.
 
