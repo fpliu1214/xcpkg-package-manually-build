@@ -71,7 +71,7 @@ jobs:
       - run: ./xcpkg install ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} --link-type=${{ github.event.inputs.link-type }} ${{ github.event.inputs.log-level }}
       - run: ./xcpkg pack    ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} -o .
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           name: ${{ github.event.inputs.package-name }}-${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}.tar.xz
           path: ${{ github.event.inputs.package-name }}-*.tar.xz
