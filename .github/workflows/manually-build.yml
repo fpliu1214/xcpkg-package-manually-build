@@ -61,11 +61,12 @@ on:
 jobs:
   build:
 
-    runs-on: macos-13
+    runs-on: macos-14
 
     steps:
       - run: curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/xcpkg
       - run: chmod a+x xcpkg
+      - run: ./xcpkg env
       - run: ./xcpkg setup
       - run: ./xcpkg update
       - run: ./xcpkg install ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} --link-type=${{ github.event.inputs.link-type }} ${{ github.event.inputs.log-level }}
