@@ -1,6 +1,6 @@
 # xcpkg-package-manually-build
 
-manually build packages using ([xcpkg](https://github.com/leleliu008/xcpkg)) via GitHub Actions.
+manually build packages using [xcpkg](https://github.com/leleliu008/xcpkg) via GitHub Actions.
 
 In this way, you will be liberated from the rut of setting up the build environmemt.
 
