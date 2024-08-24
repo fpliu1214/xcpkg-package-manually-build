@@ -81,7 +81,7 @@ jobs:
       - run: ./xcpkg setup
       - run: ./xcpkg update
       - run: ./xcpkg install ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} ${{ github.event.inputs.log-level }}
-      - run: ./xcpkg pack    ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} -o .
+      - run: ./xcpkg pack    ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }}
 
       - uses: actions/upload-artifact@v4
         with:
