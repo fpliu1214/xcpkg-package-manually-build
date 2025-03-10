@@ -34,8 +34,8 @@ on:
           - arm64_32
           - armv7k
 
-      build-type:
-        description: choose a build type
+      profile:
+        description: choose a build profile
         type: choice
         options:
           - release
@@ -80,10 +80,10 @@ jobs:
       - run: ./xcpkg about
       - run: ./xcpkg setup
       - run: ./xcpkg update
-      - run: ./xcpkg install ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} --profile=${{ github.event.inputs.build-type }} ${{ github.event.inputs.log-level }}
-      - run: ./xcpkg pack    ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }}
+      - run: ./xcpkg install ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} --profile=${{ github.event.inputs.profile }} ${{ github.event.inputs.log-level }}
+      - run: ./xcpkg bundle  ${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}/${{ github.event.inputs.package-name }} .tar.xz
 
       - uses: actions/upload-artifact@v4
         with:
-          name: ${{ github.event.inputs.package-name }}-${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}.tar.xz
-          path: ${{ github.event.inputs.package-name }}-*.tar.xz
+          name: ${{ github.event.inputs.package-name }}---${{ github.event.inputs.target-platform }}-${{ github.event.inputs.target-version }}-${{ github.event.inputs.target-arch }}.tar.xz
+          path: ./*.tar.xz
