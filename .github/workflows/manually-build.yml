@@ -74,6 +74,8 @@ jobs:
     runs-on: ${{ needs.prepare.outputs.runs-on }}
 
     steps:
+      - run: export -p
+
       - run: curl -LO https://raw.githubusercontent.com/leleliu008/xcpkg/master/xcpkg
       - run: chmod a+x xcpkg
 
